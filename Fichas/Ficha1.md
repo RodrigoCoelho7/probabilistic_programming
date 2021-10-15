@@ -1,5 +1,6 @@
 # FICHA 1
-
+### Leander Reascos PG47264
+#### MEF Fisica da Informacao 
 
 ### 1. Escreva funções que lancem uma moeda ao ar n vezes e:
 1. Conte quantas vezes saiu cara;
