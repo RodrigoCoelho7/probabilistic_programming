@@ -146,6 +146,10 @@ var get_card = function(){
 }
 
 var hand = function(l,n){
+  if (n > 52){
+    console.log('Erro, nao existem mais de 52 cartas')
+    return null
+  }
   if (n == 0) return l
   var card = get_card()
   if (any(function(x){x==card},l)) return hand(l,n)
