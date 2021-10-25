@@ -184,12 +184,12 @@ var WoD = function(A,D,TN){
 
 var n = 1000
 viz.heatMap(repeat(n,function(){
-  var TN = make_dice(20)()
+  var TN = make_dice(10)()
   return [TN,WoD(5,5,TN)]
 }))
 
 viz.heatMap(Infer(function(){
-  var TN = make_dice(20)()
+  var TN = make_dice(10)()
   return [TN,WoD(5,5,TN)]
 }))
 ~~~~
@@ -267,18 +267,38 @@ var RollKeep = function(R,K){
   return sum(results)
 }
 
-var n = 1000
-viz.heatMap(repeat(n,function(){
-  var t = make_dice(10)()
-  var s = make_dice(10)()
-  return [t,s,RollKeep(t+s,t)]
-}))
+var game = function(r1,k1,r2,k2){
+  var p1 = RollKeep(r1,k1)
+  var p2 = RollKeep(r2,k2)
+  if (p1 > p2) return 0
+  else if (p1 == p2) return 2
+  else return 1
+}
 
-viz.heatMap(Infer(function(){
-  var t = make_dice(10)()
-  var s = make_dice(10)()
-  return [t,s,RollKeep(t+s,t)]
-}))
+var N = 5
+var step = 1
+var t = reduce(function(x,acc){return acc.concat(mapN(function(){return x},N))},[],mapN(function(x){return x*step+1},N))
+var s = reduce(function(x,acc){return acc.concat(mapN(function(x){return x*step+1},N))},[],mapN(function(x){return x},N))
+var TS = zip(t,s)
+var results = reduce(function(x,acc){
+  var r1 = x[0]+x[1]
+  var k1 = x[1]
+  console.log(r1,'k',k1)
+  return acc.concat(reduce(function(x,acc){
+    var r2 = x[0]+x[1]
+    var k2 = x[1]
+    if (r2 == r1 && k2 == k1) return acc
+    var res = sum(repeat(100,function(){return game(r1,k1,r2,k2)}))
+    if (res < 50){
+      return acc.concat(r1.toString()+'k'+k1.toString())
+    }
+    else if (res > 50){
+      return acc.concat(r2.toString()+'k'+k2.toString())
+    }
+    else return acc
+  },[],TS))
+},[],TS)
+viz(results)
 ~~~~
 
 ### 8. Represente graficamente contested rolls de WoD; veja o impacto no nº de dados.
@@ -306,16 +326,41 @@ var WoD = function(A,D,TN){
   },0,res)
 }
 
-var n = 1000
-viz.heatMap(repeat(n,function(){
-  var a = make_dice(10)()
-  var d = make_dice(10)()
-  return [a,d,WoD(a,d,9)]
-}))
+var game = function(a1,d1,a2,d2,TN){
+  var p1 = WoD(a1,d1,TN)
+  var p2 = WoD(a2,d2,TN)
+  if (p1 > p2) return 0
+  else if (p1 == p2) return 2
+  else return 1
+}
 
-viz.heatMap(Infer(function(){
-  var a = make_dice(10)()
-  var d = make_dice(10)()
-  return [a,d,WoD(a,d,9)]
-}))
+var N = 5
+var step = 1
+var a = reduce(function(x,acc){return acc.concat(mapN(function(){return x},N))},[],mapN(function(x){return x*step+1},N))
+var d = reduce(function(x,acc){return acc.concat(mapN(function(x){return x*step+1},N))},[],mapN(function(x){return x},N))
+var AD = zip(a,d)
+var TN = mapN(function(x){return x*2+1},10)
+var plot_graph = function(tn){
+  var results = reduce(function(x,acc){
+    var r1 = x[0]+x[1]
+    var k1 = x[1]
+    return acc.concat(reduce(function(x,acc){
+      var r2 = x[0]+x[1]
+      var k2 = x[1]
+      if (r2 == r1 && k2 == k1) return acc
+      var res = sum(repeat(100,function(){return game(r1,k1,r2,k2,tn)}))
+      if (res < 50){
+        return acc.concat('A'+r1.toString()+'D'+k1.toString()+'T: '+(r1+k1).toString())
+      }
+      else if (res > 50){
+        return acc.concat('A'+r2.toString()+'D'+k2.toString()+'T: '+(r2+k2).toString())
+      }
+      else return acc
+    },[],AD))
+  },[],AD)
+  console.log('TN: ',tn)
+  viz(results)
+}
+
+map(plot_graph,TN)
 ~~~~
