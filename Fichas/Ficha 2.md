@@ -371,13 +371,13 @@ map(plot_graph,TN)
 
 Resultados do *Battle Royale* entre varias combinações para diferentes TN
 
-TN = 1
-<img src='img/f2e81.svg'>
-TN = 3
-<img src='img/f2e83.svg'>
-TN = 5
-<img src='img/f2e85.svg'>
-TN = 7
-<img src='img/f2e87.svg'>
-TN = 9
-<img src='img/f2e89.svg'>
+TN = 1 <br>
+<img src='img/f2e81.svg'><br>
+TN = 3 <br>
+<img src='img/f2e83.svg'><br>
+TN = 5 <br>
+<img src='img/f2e85.svg'><br>
+TN = 7 <br>
+<img src='img/f2e87.svg'><br>
+TN = 9 <br>
+<img src='img/f2e89.svg'><br>
