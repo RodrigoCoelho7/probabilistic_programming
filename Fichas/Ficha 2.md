@@ -301,6 +301,8 @@ var results = reduce(function(x,acc){
 viz(results)
 ~~~~
 
+<img href='img/f1e7.svg'>
+
 ### 8. Represente graficamente contested rolls de WoD; veja o impacto no nº de dados.
 
 ~~~~
