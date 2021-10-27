@@ -301,7 +301,9 @@ var results = reduce(function(x,acc){
 viz(results)
 ~~~~
 
-<img src='img/f1e7.svg'>
+Resultados do *Battle Royale* entre varias combinações
+
+<img src='img/f2e7.svg'>
 
 ### 8. Represente graficamente contested rolls de WoD; veja o impacto no nº de dados.
 
@@ -366,3 +368,16 @@ var plot_graph = function(tn){
 
 map(plot_graph,TN)
 ~~~~
+
+Resultados do *Battle Royale* entre varias combinações para diferentes TN
+
+TN = 1
+<img src='img/f2e81.svg'>
+TN = 3
+<img src='img/f2e83.svg'>
+TN = 5
+<img src='img/f2e85.svg'>
+TN = 7
+<img src='img/f2e87.svg'>
+TN = 9
+<img src='img/f2e89.svg'>
