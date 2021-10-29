@@ -56,3 +56,23 @@ var g = function(){return gamma({shape:alpha,scale:theta})}
 viz(Gamma({shape:alpha,scale:beta}))
 viz(Infer({method:'rejection',samples:100000},g))
 ~~~~
+//Gamma Model
+
+var beta = 10
+var theta = 1/beta
+var alpha = 20
+var g = function(){return gamma({shape:alpha,scale:beta})}
+
+var factorial = function(n){
+  return reduce(function(x, acc) {return x*acc}, 1, mapN(function(x){return x+1}, n))
+}
+
+//Cumulative density function
+var cdf = function(x){
+  return 1 - sum(mapN(function(i){
+    return Math.pow(beta*x,i)/factorial(i)*Math.exp(-beta*x)
+  },alpha))
+}
+
+console.log("A probabilidade de esperar menos do que 2 horas é de: "+cdf(2)*100+"%")
+~~~~
