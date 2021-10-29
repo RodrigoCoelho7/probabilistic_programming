@@ -56,6 +56,8 @@ var g = function(){return gamma({shape:alpha,scale:theta})}
 viz(Gamma({shape:alpha,scale:beta}))
 viz(Infer({method:'rejection',samples:100000},g))
 ~~~~
+
+~~~~
 //Gamma Model
 
 var beta = 10
