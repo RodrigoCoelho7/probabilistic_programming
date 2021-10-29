@@ -43,8 +43,8 @@ console.log('P(x>=12) = ',1 - cp(12))
 # Gamma Distribution
 
 ### arguments ({args}):
-- shape = alpha 
-- scale = theta, 1/beta
+- shape = alpha valores >0
+- scale = theta, 1/beta valores >0
 ### Functions
 - *Gamma({shape:alpha,scale:theta})*: Distribuição
 - *gamma({shape:alpha,scale:theta})*: Modelo probabilistico
