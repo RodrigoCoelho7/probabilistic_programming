@@ -1,3 +1,10 @@
+# Poisson Distribution
+
+### arguments ({args}):
+- mu = Lambda valores inteiros positivos
+### Functions
+- *Poisson({mu:Lambda})*: Distribuição
+- *poisson({mu:Lambda})*: Modelo probabilistico
 ~~~~
 var Lambda = 10
 var p = function(){return poisson(Lambda)}
@@ -33,11 +40,19 @@ console.log('Por Iteracao: ',prob(6,100000))
 console.log('Por Definicao: ',p_def(6))
 console.log('P(x>=12) = ',1 - cp(12))
 ~~~~
+# Gamma Distribution
 
+### arguments ({args}):
+- shape = alpha 
+- scale = theta, 1/beta
+### Functions
+- *Gamma({shape:alpha,scale:theta})*: Distribuição
+- *gamma({shape:alpha,scale:theta})*: Modelo probabilistico
 ~~~~
-var beta = 1/10
+var beta = 10
+var theta = 1/beta
 var alpha = 20
-var g = function(){return gamma({shape:alpha,scale:beta})}
+var g = function(){return gamma({shape:alpha,scale:theta})}
 viz(Gamma({shape:alpha,scale:beta}))
 viz(Infer({method:'rejection',samples:100000},g))
 ~~~~
