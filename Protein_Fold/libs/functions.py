@@ -39,6 +39,8 @@ def make_experiment(cells,directions):
     
 
 
-exp = make_experiment('HPHPPPP','SFRFRFF')
+exp = make_experiment('HHHHHPPHH','SFRRFLLFF')
+exp.count_energy()
+print(exp.energy,exp.energies)
 exp.plot_Experiment()
 plt.show()
